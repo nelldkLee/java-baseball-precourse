@@ -40,14 +40,11 @@ public class TotalCount {
     public void print() {
         if (this.strike == 0 && this.ball == 0) {
             System.out.println("낫싱");
+            return;
         }
         StringBuilder builder = new StringBuilder();
-        if (this.strike > 0) {
-            builder.append(this.strike + "스트라이크 ");
-        }
-        if (this.ball > 0) {
-            builder.append(this.ball + "볼");
-        }
+        if (this.strike > 0) builder.append(this.strike + "스트라이크 ");
+        if (this.ball > 0) builder.append(this.ball + "볼");
         System.out.println(builder.toString());
     }
 

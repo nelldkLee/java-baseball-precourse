@@ -12,7 +12,7 @@ public class BaseballGame {
 
     private List<Ball> playerBalls = new ArrayList<>();
     private List<Ball> computerBalls = new ArrayList<>();
-    private boolean result;
+    private boolean result = true;
 
     public BaseballGame() {
     }
