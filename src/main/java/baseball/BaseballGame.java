@@ -22,7 +22,7 @@ public class BaseballGame {
     }
 
     public void start() {
-        make3Ball();
+        make3BallForComputer();
         while(play()) {
         }
     }
@@ -44,8 +44,22 @@ public class BaseballGame {
         TotalCount totalCount = new TotalCount(computerBalls, playerBalls);
         totalCount.calculateCount();
         totalCount.print();
-
+        if (totalCount.isDone()) {
+            return rePlay();
+        }
         return true;
+    }
+
+    private boolean rePlay() {
+        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
+        System.out.println("게임을 새로시작하려면 1, 종료하려면 2를 입력하세요.");
+        String inputData = Console.readLine();
+        if ("1".equals(inputData)) {
+            computerBalls.clear();
+            make3BallForComputer();
+            return true;
+        }
+        return false;
     }
 
     public boolean is3LengthData(String inputData) {
@@ -66,7 +80,7 @@ public class BaseballGame {
         }
         return true;
     }
-    public void make3Ball() {
+    public void make3BallForComputer() {
         Set<Integer> ballNumbers = new HashSet<>();
         int ballIdx = 1;
         while(ballNumbers.size() != 3) {
@@ -96,3 +110,4 @@ public class BaseballGame {
     }
 
 }
+
