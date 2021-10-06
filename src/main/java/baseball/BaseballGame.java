@@ -3,10 +3,7 @@ package baseball;
 import nextstep.utils.Console;
 import nextstep.utils.Randoms;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class BaseballGame {
 
@@ -81,7 +78,8 @@ public class BaseballGame {
         return true;
     }
     public void make3BallForComputer() {
-        Set<Integer> ballNumbers = new HashSet<>();
+        LinkedHashSet<Integer> ballNumbers = new LinkedHashSet<>();
+
         int ballIdx = 1;
         while(ballNumbers.size() != 3) {
             ballNumbers.add(Randoms.pickNumberInRange(1, 9));
