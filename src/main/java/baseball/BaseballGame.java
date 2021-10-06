@@ -28,13 +28,13 @@ public class BaseballGame {
         return true;
     }
 
-    private void is3LengthData(String inputData) {
+    public void is3LengthData(String inputData) {
         if (inputData.length() != 3) {
             throw new IllegalArgumentException("입력된 값이 3자리의 값이 아닙니다.");
         }
     }
 
-    private void make3Ball(String inputData) {
+    public void make3Ball(String inputData) {
         String[] numbers = inputData.split("");
         int ballIdx = 1;
         for (String number : numbers) {
@@ -44,7 +44,7 @@ public class BaseballGame {
         }
     }
 
-    private void printError(String message) {
+    public void printError(String message) {
         System.out.println("[ERROR] " + message);
     }
 
