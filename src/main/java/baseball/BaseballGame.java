@@ -12,6 +12,7 @@ public class BaseballGame {
 
     private List<Ball> playerBalls = new ArrayList<>();
     private List<Ball> computerBalls = new ArrayList<>();
+    private boolean result;
 
     public BaseballGame() {
     }
@@ -29,26 +30,32 @@ public class BaseballGame {
     public boolean play() {
         System.out.print("숫자를 입력해주세요 : ");
         String inputData = Console.readLine();
-
         try {
-            is3LengthData(inputData);
-            make3BallForPlayer(inputData);
-            isNumberDuplicate();
+            this.result = is3LengthData(inputData) && make3BallForPlayer(inputData) && !isNumberDuplicate() && matchBall();
         } catch (NumberFormatException e) {
             printError(e.getMessage());
         } catch (IllegalArgumentException e) {
             printError(e.getMessage());
         }
+        return result;
+    }
+
+    public boolean matchBall() {
+        TotalCount totalCount = new TotalCount(computerBalls, playerBalls);
+        totalCount.calculateCount();
+        totalCount.print();
+
         return true;
     }
 
-    public void is3LengthData(String inputData) {
+    public boolean is3LengthData(String inputData) {
         if (inputData.length() != 3) {
             throw new IllegalArgumentException("입력된 값이 3자리의 값이 아닙니다.");
         }
+        return true;
     }
 
-    public void make3BallForPlayer(String inputData) {
+    public boolean make3BallForPlayer(String inputData) {
         playerBalls.clear();
         String[] numbers = inputData.split("");
         int ballIdx = 1;
@@ -57,6 +64,7 @@ public class BaseballGame {
             Ball ball = new Ball(ballNumber, ballIdx++);
             playerBalls.add(ball);
         }
+        return true;
     }
     public void make3Ball() {
         Set<Integer> ballNumbers = new HashSet<>();
