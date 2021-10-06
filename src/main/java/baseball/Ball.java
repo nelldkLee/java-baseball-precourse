@@ -17,4 +17,8 @@ public class Ball {
         }
         throw new IllegalArgumentException("1과 9사이의 숫자만 입력가능합니다.");
     }
+
+    public int getBallNumber() {
+        return ballNumber;
+    }
 }
