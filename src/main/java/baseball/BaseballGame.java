@@ -6,11 +6,10 @@ import java.util.ArrayList;
 
 public class BaseballGame {
 
-    private ArrayList<Ball> playerBalls;
+    private ArrayList<Ball> playerBalls = new ArrayList<>();
 
     public void start() {
         while(play()) {
-
         }
     }
 
@@ -26,16 +25,13 @@ public class BaseballGame {
         } catch (IllegalArgumentException e) {
             printError(e.getMessage());
         }
-
         return true;
     }
 
-    private boolean is3LengthData(String inputData) {
+    private void is3LengthData(String inputData) {
         if (inputData.length() != 3) {
-            throw new IllegalArgumentException("The entered value is not 3 digits");
+            throw new IllegalArgumentException("입력된 값이 3자리의 값이 아닙니다.");
         }
-
-        return true;
     }
 
     private void make3Ball(String inputData) {
