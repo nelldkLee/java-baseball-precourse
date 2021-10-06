@@ -1,6 +1,7 @@
 package baseball;
 
 import nextstep.utils.Console;
+import nextstep.utils.Randoms;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -10,6 +11,7 @@ import java.util.Set;
 public class BaseballGame {
 
     private List<Ball> playerBalls = new ArrayList<>();
+    private List<Ball> computerBalls = new ArrayList<>();
 
     public BaseballGame() {
     }
@@ -19,6 +21,7 @@ public class BaseballGame {
     }
 
     public void start() {
+        make3Ball();
         while(play()) {
         }
     }
@@ -29,7 +32,7 @@ public class BaseballGame {
 
         try {
             is3LengthData(inputData);
-            make3Ball(inputData);
+            make3BallForPlayer(inputData);
             isNumberDuplicate();
         } catch (NumberFormatException e) {
             printError(e.getMessage());
@@ -45,7 +48,7 @@ public class BaseballGame {
         }
     }
 
-    public void make3Ball(String inputData) {
+    public void make3BallForPlayer(String inputData) {
         playerBalls.clear();
         String[] numbers = inputData.split("");
         int ballIdx = 1;
@@ -54,6 +57,17 @@ public class BaseballGame {
             Ball ball = new Ball(ballNumber, ballIdx++);
             playerBalls.add(ball);
         }
+    }
+    public void make3Ball() {
+        Set<Integer> ballNumbers = new HashSet<>();
+        int ballIdx = 1;
+        while(ballNumbers.size() != 3) {
+            ballNumbers.add(Randoms.pickNumberInRange(1, 9));
+        }
+        for (Integer ballNumber : ballNumbers) {
+            computerBalls.add(new Ball(ballNumber, ballIdx++));
+        }
+
     }
 
     public boolean isNumberDuplicate() {
